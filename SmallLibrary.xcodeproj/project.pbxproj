@@ -15,7 +15,7 @@
 		ACDD043A2962D0AF00B8CF22 /* SmallLibrary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACDD04382962D0AF00B8CF22 /* SmallLibrary.xcdatamodeld */; };
 		ACDD04412962DD1D00B8CF22 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDD04402962DD1D00B8CF22 /* AddBookView.swift */; };
 		ACDD04432962E67800B8CF22 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDD04422962E67800B8CF22 /* BookDetailView.swift */; };
-		ACDD04452964279500B8CF22 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDD04442964279500B8CF22 /* SearchBarView.swift */; };
+		ACDD0447296435A200B8CF22 /* FavoriteBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDD0446296435A200B8CF22 /* FavoriteBookView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 		ACDD04392962D0AF00B8CF22 /* SmallLibrary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SmallLibrary.xcdatamodel; sourceTree = "<group>"; };
 		ACDD04402962DD1D00B8CF22 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		ACDD04422962E67800B8CF22 /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
-		ACDD04442964279500B8CF22 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		ACDD0446296435A200B8CF22 /* FavoriteBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBookView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +63,9 @@
 			children = (
 				ACDD042D2962D0AD00B8CF22 /* SmallLibraryApp.swift */,
 				ACDD042F2962D0AD00B8CF22 /* ContentView.swift */,
-				ACDD04402962DD1D00B8CF22 /* AddBookView.swift */,
-				ACDD04442964279500B8CF22 /* SearchBarView.swift */,
-				ACDD04422962E67800B8CF22 /* BookDetailView.swift */,
+				ACDD04482964363500B8CF22 /* View */,
+				ACDD04492964367700B8CF22 /* Data */,
 				ACDD04312962D0AF00B8CF22 /* Assets.xcassets */,
-				ACDD04362962D0AF00B8CF22 /* Persistence.swift */,
 				ACDD04382962D0AF00B8CF22 /* SmallLibrary.xcdatamodeld */,
 				ACDD04332962D0AF00B8CF22 /* Preview Content */,
 			);
@@ -80,6 +78,24 @@
 				ACDD04342962D0AF00B8CF22 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ACDD04482964363500B8CF22 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ACDD04402962DD1D00B8CF22 /* AddBookView.swift */,
+				ACDD04422962E67800B8CF22 /* BookDetailView.swift */,
+				ACDD0446296435A200B8CF22 /* FavoriteBookView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ACDD04492964367700B8CF22 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				ACDD04362962D0AF00B8CF22 /* Persistence.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,10 +171,10 @@
 				ACDD04372962D0AF00B8CF22 /* Persistence.swift in Sources */,
 				ACDD04302962D0AD00B8CF22 /* ContentView.swift in Sources */,
 				ACDD042E2962D0AD00B8CF22 /* SmallLibraryApp.swift in Sources */,
-				ACDD04452964279500B8CF22 /* SearchBarView.swift in Sources */,
 				ACDD043A2962D0AF00B8CF22 /* SmallLibrary.xcdatamodeld in Sources */,
 				ACDD04432962E67800B8CF22 /* BookDetailView.swift in Sources */,
 				ACDD04412962DD1D00B8CF22 /* AddBookView.swift in Sources */,
+				ACDD0447296435A200B8CF22 /* FavoriteBookView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

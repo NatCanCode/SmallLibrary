@@ -18,6 +18,21 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
     
     @State private var showingAddBook = false
+    //    @State var isFavorite: Bool
+    
+    @State private var searchText = ""
+    
+    func filterItems() -> [FetchedResults<Item>.Element] {
+            let elementItems = items.map { $0 }
+            let filterResult = items.filter { item in
+                guard let title = item.title else {
+                    return false
+                }
+                return title.localizedCaseInsensitiveContains(searchText)
+            }
+
+            return searchText.isEmpty ? elementItems : filterResult
+        }
     
     init() {
         //Use this if NavigationBarTitle is with Large Font
@@ -27,59 +42,71 @@ struct ContentView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
+//            Text("Searching for \(searchText)")
+//                .foregroundColor(.accentColor)
             List {
-                ForEach(items) { item in
+                ForEach(filterItems()) { item in
                     NavigationLink {
-                        VStack(spacing: 10) {
-                            Text(item.title ?? "No title")
-//                                .bold()
-//                                .font(.title)
-                                .font(.custom(
-//                                        "AmericanTypewriter",
-                                        "Montserrat-Bold",
-                                        fixedSize: 36))
-                                .foregroundColor(.white)
-                            Text(item.author ?? "No author")
-                                .font(.title2)
-                                .foregroundColor(.white)
-//                                .font(.system(.largeTitle, design: .serif))
-                            Text(String(item.year))
-                                .font(.title2)
-                                .foregroundColor(.white)
-                                .padding(.bottom, 15)
-                            Text(item.category ?? "No category")
-                                .padding(.top, 15)
-                                .padding(.bottom)
-                                .foregroundColor(.accentColor)
-                            Text(item.plot ?? "No plot")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-//                                .blur(radius: 30)
-                                .background(.ultraThinMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                
-//                            Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                            Spacer()
-                        }
-                        .padding()
-                        .background(Image("book-and-coffee")
-                            .resizable()
-                            .scaledToFill()
-                            .ignoresSafeArea())
+                        BookDetailView(item: item, isFavorite: false)
+//                        VStack(spacing: 10) {
+//                            Text(item.title ?? "No title")
+////                                .bold()
+////                                .font(.title)
+//                                .font(.custom(
+////                                        "AmericanTypewriter",
+//                                        "Montserrat-Bold",
+//                                        fixedSize: 36))
+//                                .foregroundColor(.white)
+//                            Text(item.author ?? "No author")
+//                                .font(.title2)
+//                                .foregroundColor(.white)
+////                                .font(.system(.largeTitle, design: .serif))
+//                            Text(String(item.year))
+//                                .font(.title2)
+//                                .foregroundColor(.white)
+//                                .padding(.bottom, 15)
+//                            Text(item.category ?? "No category")
+//                                .padding(.top, 15)
+//                                .padding(.bottom)
+//                                .foregroundColor(.accentColor)
+//                            Text(item.plot ?? "No plot")
+//                                .frame(maxWidth: .infinity)
+//                                .padding()
+////                                .blur(radius: 30)
+//                                .background(.ultraThinMaterial)
+//                                .clipShape(RoundedRectangle(cornerRadius: 10))
+//
+////                            Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+//                            Spacer()
+//                        }
+//                        .padding()
+//                        .background(Image("book-and-coffee")
+//                            .resizable()
+//                            .scaledToFill()
+//                            .ignoresSafeArea())
                     } label: {
-                        VStack(alignment: .leading) {
-                            Text(item.title ?? "No title")
-                                .bold()
-                                .font(.headline)
-                            Text(item.author ?? "No auther")
-                                .font(.headline)
-                                .foregroundColor(.gray)
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(item.title ?? "No title")
+                                    .bold()
+                                    .font(.headline)
+                                Text(item.author ?? "No author")
+                                    .font(.headline)
+                                    .foregroundColor(.gray)
+                            }
+                            if item.isFavorite {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.accentColor)
+                            }
                         }
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
+//            .searchable(text: $searchText)
+            .searchable(text: $searchText, placement:  .navigationBarDrawer(displayMode: .always),
+                            prompt: "Look for a book")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
